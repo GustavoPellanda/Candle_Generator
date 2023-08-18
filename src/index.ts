@@ -12,4 +12,6 @@ const readMarketPrice = async (): Promise<number> => {
     return price;
 }
 
+//Test
+
 readMarketPrice();
