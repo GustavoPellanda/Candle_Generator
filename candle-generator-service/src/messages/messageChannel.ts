@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import { Channel, connect } from 'amqplib';
 
 // Creates the channel that sends messages through RabbitMQ:
-export const CreateMessageChanel = async (): Promise<Channel> => {
+export const CreateMessageChannel = async (): Promise<Channel> => {
     config();
 
     try{

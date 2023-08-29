@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 import axios from 'axios';
 import Period from './enums/Period';
 import Candle from './models/Candle';
-import { CreateMessageChanel } from './messages/messageChannel';
+import { CreateMessageChannel } from './messages/messageChannel';
 
 config();
 
@@ -17,7 +17,7 @@ const readMarketPrice = async (): Promise<number> => {
 
 // Creates a candle periodically:
 const generateCandles = async() => {
-    const messageChannel = await CreateMessageChanel();                                     // Function that connects to RabbitMQ
+    const messageChannel = await CreateMessageChannel();                                     // Function that connects to RabbitMQ
 
     if(messageChannel){
         while(true){
