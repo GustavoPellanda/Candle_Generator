@@ -1,4 +1,4 @@
-import { Candle, candleModel } from "src/models/candleModel";
+import { Candle, candleModel } from "../models/candleModel";
 
 export default class candleController {
     async save(candle: Candle): Promise<Candle> {                  // Saves a new candle document in the database
