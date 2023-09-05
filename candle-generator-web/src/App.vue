@@ -1,12 +1,19 @@
 <template>
-    <Header></Header>
-    <CandleStickChart />
+  <Header />
+  <CandleStickChart v-if="candles.length > 0" :candles="candles" />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
-import CandleStickChart from './components/CandleStickChart.vue';
-import Header from './components/Header.vue';
+import { getModule } from 'vuex-module-decorators'
+import io from 'socket.io-client'
+import CandleStickChart from './components/CandleStickChart.vue'
+import Header from './components/Header.vue'
+import CandleStore from './store/modules/candleStore'
+import store from './store'
+import Candle from './models/candle'
+import { createToast } from 'mosha-vue-toastify'
+import 'mosha-vue-toastify/dist/style.css';
 
 @Options({
   components: {
@@ -14,7 +21,24 @@ import Header from './components/Header.vue';
     CandleStickChart
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+
+  candleStore = getModule(CandleStore, store);
+  socket = io(process.env.VUE_APP_SOCKET_SERVER);
+  
+  mounted()  {
+    this.candleStore.loadInitalCandles();
+    this.socket.on(process.env.VUE_APP_SOCKET_EVENT_NAME, (msg: any) => {
+      const candle = new Candle(msg);
+      this.candleStore.addCandle(candle);
+      createToast('New price update!', { type: 'info' });
+    });
+  }
+
+  get candles() {
+    return this.candleStore.candles;
+  }
+}
 </script>
 
 <style>
