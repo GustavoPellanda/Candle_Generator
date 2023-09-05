@@ -2,7 +2,7 @@ import axios from "axios";
 import { Action, Module, Mutation, VuexModule } from "vuex-module-decorators";
 import Candle from "@/models/candle";
 
-// Fetches the API and manages the data recived:
+// Fetches the API and manages the data recived
 
 const http = axios.create({                                                                 // Creates a http client that connects to the candles api
     baseURL: process.env.VUE_APP_CANDLES_API
