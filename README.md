@@ -2,8 +2,6 @@
 
 <p> Candle Generator is a software system designed to obtain data from a chosen financial API that informs prices for a given currency and exhibit it graphically in the form of a candle chart. </p>
 
-🚧 Under construction...
-
 <h2>Content</h2>
 <ul>
     <li><a href="#Explanation">Explanation</a></li>
@@ -44,7 +42,7 @@
 
 <h2>Environment Set-Up</h2>
 
-<p></p>
+<p>To run the development servers you'll need to have the RabbitMQ and MongoDB docker daemons running.</p>
 
 <h2>Main Codes</h2>
 
@@ -55,8 +53,12 @@
 
 <h2>Building and Running</h2>
 
-<p></p>
+<p>Candle Service can be run individually with the command yarn run.</p> 
+<p>The API can be run individually with the command yarn dev.</p>
+<p>The TypeScript codes from the Service and the API can be translated into JavaScript using tsc.</p>
+<p>The backend codes can be daemonized and operated in the background using PM2.</p>
+<p>The Web App can be run individually with the command npm run serve.</p>
 
 <h2>Working Examples</h2>
 
-<p></p>
+<img src="https://github.com/GustavoPellanda/Candle_Generator/assets/129123498/2dfa55c8-1b4a-4696-a7ba-8668b35062a7" alt="screenshot of the programs working here">
