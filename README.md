@@ -16,6 +16,8 @@
 
 <p>Candle Generator is a software system that consists of three apps: The Service, The API, and The Web App. Its main goal is to display the fluctuations of a currency in a financial candle chart. As of the current date (09/11/23), it is configured to monitor and display the fluctuations of Bitcoin, using the API available at CoinGecko.</p>
 
+<p><img src="https://github.com/GustavoPellanda/Candle_Generator/assets/129123498/ea1a0b6b-fe3d-4bba-a9a1-7229d8b2df09" alt="schematic drawing representing the functioning of the system"></p>
+    
 <p>The Service is responsible for fetching data from the CoinGecko API, which includes Bitcoin prices over a specified time period. The address used to access CoinGecko is defined in the ".env" file, while the duration of each data fetch is determined by variables in "/enums/Period.ts." The Service then organizes this information into an object containing the necessary data for constructing a financial candle: opening, highest, lowest, and closing prices of Bitcoin during the specified time period. The code that tracks the highest and lowest prices is located in "/models/Candle.ts," which is also responsible for defining the structure of a candle object. Subsequently, each candle object created is sent to the RabbitMQ transmission queue. The RabbitMQ configuration is specified in the "docker-compose.yml" file, and the connection is managed by the code in "/messages/messageChannel.ts." The names of the queue and AMQP server are defined in the ".env" file.</p>
 
 <p>The API is responsible for handling the streaming of candles from the Service to the Web and also for storing them in a database. It establishes a WebSocket channel through which clients can connect to and receive candle objects. The "/messages/messageChannel.ts" code is responsible for receiving the candle data transmitted via the RabbitMQ queue and routing it to both the MongoDB database and the socket.io channel. The Express server necessary for the API to run is started by "server.ts," which is also responsible for initializing the Message Channel. CRUD operations on the database are defined in "/controllers/candleController.ts," while the document model used for storage is defined in "/models/candleModel.ts," and the database connection is managed by "/config/db.ts."</p>
@@ -29,6 +31,7 @@
     <li>RabbitMQ</li>
     <li>AMQP</li>
     <li>MongoDB</li>
+    <li>Mongoose</li>
     <li>Socket.io</li>
     <li>Axios</li>
     <li>Docker</li>
@@ -61,4 +64,4 @@
 
 <h2>Working Examples</h2>
 
-<img src="https://github.com/GustavoPellanda/Candle_Generator/assets/129123498/2dfa55c8-1b4a-4696-a7ba-8668b35062a7" alt="screenshot of the programs working here">
+<img src="https://github.com/GustavoPellanda/Candle_Generator/assets/129123498/2dfa55c8-1b4a-4696-a7ba-8668b35062a7" alt="screenshot of the programs working">
